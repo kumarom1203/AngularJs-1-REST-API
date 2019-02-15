@@ -1,3 +1,28 @@
 /* 
 ANGULAR 7 
 */
+Installation
+You're first going to need to install the Angular CLI (Command Line Interface) tool, which helps you start new Angular 7 projects as well as assist you during development. In order to install the Angular CLI, you will need Nodejs. Make sure you install this with the default options and reload your command line or console after doing so.
+
+In your command line, type:
+> npm install -g @angular/cli
+
+Once complete, you can now access the CLI by simply starting any commands with ng.
+
+Hop into whichever folder you want to store your projects, and run the following command to install a new Angular 7 project:
+> ng new ng7
+
+It's going to present you with a couple questions before beginning:
+? Would you like to add Angular routing? Yes
+? Which stylesheet format would you like to use? SCSS   [ http://sass-lang.com   ]
+
+It will take a minute or two and once completed, you can now hop into the new project folder by typing:
+> cd ng7
+
+Open up this project in your preferred code editor (I use Visual Studio Code, and you can launch it automatically by typing code . in the current folder), and then run this command to run a development server using the Angular CLI:
+
+> ng serve -o
+
+-o is for open, this flag will open your default browser at http://localhost:4200. Tip: You can type ng to get a list of all available commands, and ng [command] --help to discover all their flags.
+
+Awesome! If all went smooth, you should be presented with the standard landing page template for your new Angular 7 project:
