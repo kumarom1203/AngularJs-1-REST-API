@@ -58,5 +58,27 @@ export class AppComponent {
 }
 
 
+Here, because this is a component, we're importing Component from the @angular/core library, and then it defines what's called a @Component decorator, which provides configuration options for that particular component.
+
+As you can see, it's referencing the location of the HTML template file and the CSS file with the templateUrl property and the styleUrls property.
+
+The logic of the component resides in the class at the bottom. As you can see, the CLI starter template simply defines a single property called title.
+
+Let's use the Angular CLI to create our own components that we'll need going forward. In the console, issue the following commands:
+
+> ng generate component nav
+// output
+
+> ng g c about
+// output
+
+> ng g c contact
+// output
+
+> ng g c home
+// output
+
+
+
 
 
