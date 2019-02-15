@@ -26,3 +26,37 @@ Open up this project in your preferred code editor (I use Visual Studio Code, an
 -o is for open, this flag will open your default browser at http://localhost:4200. Tip: You can type ng to get a list of all available commands, and ng [command] --help to discover all their flags.
 
 Awesome! If all went smooth, you should be presented with the standard landing page template for your new Angular 7 project:
+
+
+Angular 7 Components
+The most basic building block of your Angular 7 application (and this is a concept that's not new) is the component. A component consists of three primary elements:
+
+The HTML template
+The logic
+The styling (CSS, Sass, Stylus, etc..)
+When we use the Angular CLI to start a new project, it generates a single component, which is found in /src/app/:
+
+
+/app.component.html
+/app.component.scss
+/app.component.ts
+
+
+
+While we have three files here that represent the three elements above, the .ts (TypeScript) is the heart of the component. Let's take a look at that file:
+
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  title = 'ng7-pre';
+}
+
+
+
+
