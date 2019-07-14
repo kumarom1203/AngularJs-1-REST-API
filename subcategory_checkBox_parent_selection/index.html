@@ -1,168 +1,249 @@
 <!DOCTYPE html>
 <html ng-app="plunker">
-
-  <head>
-    <meta charset="utf-8" />
-    <title>AngularJS Plunker</title>
-
-    <script data-require="angular.js@1.4.x" src="https://code.angularjs.org/1.4.8/angular.js" data-semver="1.4.8"></script>
-   <style>
-   ul li {
-  list-style: none;
-}
-
-   li {
-  list-style: none;
-}
-   </style>
-  </head>
-
-  <body ng-controller="MainCtrl">
-   <input type="checkbox" ng-model="toggle_check_box" ng-change="toggle_check_box_fun()"> Select All
-    <ul>
-      <li ng-repeat="roleUser in appByRole">
-        <input type="checkbox" ng-model="roleUser.selected" ng-change="parentChange($index)">
-        {{roleUser.name}} ({{roleUser.app_users_selected}} / {{roleUser.app_users.length}}) 
-        <ul>
-          <li ng-repeat="user in roleUser.app_users">
-            <input type="checkbox" ng-model="user.selected" value=''>
-            {{user.name}}
-          </li>
-        </ul>
-      </li> 
-    </ul>
-	
-
-   
-  
-	
-	
-	<button ng-click="getAllData();"> GET SELECTED</button>
-	<button ng-click="select_all_at_once();"> Select All At Once</button>
-	<button ng-click="de_select_all_at_once();">Deselect All At Once</button>
-  </body>
-
+   <head>
+      <meta charset="utf-8" />
+      <title>AngularJS Plunker</title>
+      <script data-require="angular.js@1.4.x" src="https://code.angularjs.org/1.4.8/angular.js" data-semver="1.4.8"></script>
+      <style>
+         ul li {
+         list-style: none;
+         }
+         li {
+         list-style: none;
+         }
+      </style>
+   </head>
+   <body ng-controller="MainCtrl">
+      <input type="checkbox" ng-model="toggle_check_box" ng-change="toggle_check_box_fun()"> Select All ({{total_selected}}/{{total_number_of_element}})
+      <ul>
+         <li ng-repeat="roleUser in appByRole">
+            <input type="checkbox" ng-model="roleUser.selected" ng-change="parentChange($index)">
+            {{roleUser.name}} ({{roleUser.app_users_selected}} / {{roleUser.app_users.length}}) 
+            <ul>
+               <li ng-repeat="user in roleUser.app_users">
+                  <input type="checkbox" ng-model="user.selected" value=''>
+                  {{user.name}}
+               </li>
+            </ul>
+         </li>
+      </ul>
+      <button ng-click="getAllData();"> GET SELECTED</button>
+      <button ng-click="select_all_at_once();"> Select All At Once</button>
+      <button ng-click="de_select_all_at_once();">Deselect All At Once</button>
+      <br>
+      {{get_all_selected_ids}}
+   </body>
 </html>
 
 
 <script>
-// Code goes here
-
 var app = angular.module('plunker', []);
+app.controller('MainCtrl', function ($scope) {
+	$scope.total_selected = 0;
+	$scope.profile_name = {};
+	$scope.$watch('appByRole', function (appByRole) {
+		//$scope.toggle_check_box=false;  
+		var total_selected = 0;
+		$scope.total_number_of_element=0
+		$scope.selectectedProfile = [];
+		angular.forEach(appByRole, function (roleUser) {
 
-app.controller('MainCtrl', function($scope) {
-  
-  $scope.total_selected = 0;
-  $scope.profile_name={};
-  $scope.$watch('appByRole', function(appByRole){
-  //$scope.toggle_check_box=false;  
-    var total_selected = 0;
-    $scope.selectectedProfile=[];
-    angular.forEach(appByRole, function(roleUser){
-    
-      roleUser.app_users_selected = 0;
-        
-      angular.forEach(roleUser.app_users, function(user){
-      
-        total_selected += user.selected ? 1 : 0
-        
-        roleUser.app_users_selected += user.selected ? 1 : 0
-        
-        if (roleUser.app_users_selected == roleUser.app_users.length) {
-          roleUser.selected = true
-		  
-		  
-        } else {
-          roleUser.selected = false;
-		 
-        }
-		
-		angular.forEach(roleUser.app_users,function(data){
-		if(data.selected==true){
-		  $scope.selectectedProfile.push(data.id);
-		 }
-		 else{
-		 }
-		});
-        
-      });
-      
-    });
+			roleUser.app_users_selected = 0;
 
-    
-   $scope.select_all = function(roleUser){
-     roleUser.selected = true;
-   }
-	
-	$scope.select_all_at_once = function(){
-	$scope.toggle_check_box=true; 
-	   angular.forEach( $scope.appByRole, function(app_users) 
-		{
-		   angular.forEach(app_users.app_users, function(user) 
-		   {
-		    user.selected = true
-           });
-        });
-    }
-    
-	
-		$scope.de_select_all_at_once = function(){
-		$scope.toggle_check_box=false; 
-	   angular.forEach( $scope.appByRole, function(app_users) 
-		{
-		   angular.forEach(app_users.app_users, function(user) 
-		   {
-		    user.selected = false
-           });
-        });
-    }
-	
-	$scope.toggle_check_box_fun=function(){
-	 	   angular.forEach( $scope.appByRole, function(app_users) 
-		{
-		   angular.forEach(app_users.app_users, function(user) 
-		   {
-		    if($scope.toggle_check_box){
-		    user.selected = true;
-			 
-			}else{
-		    user.selected = false;
-			 
-			}
+			angular.forEach(roleUser.app_users, function (user) {
+
+				total_selected += user.selected ? 1 : 0
+
+				roleUser.app_users_selected += user.selected ? 1 : 0
+
+				if (roleUser.app_users_selected == roleUser.app_users.length) {
+					roleUser.selected = true;
+					$scope.total_number_of_element=$scope.total_number_of_element+1;
+				} else {
+				    $scope.total_number_of_element=$scope.total_number_of_element+1;
+					roleUser.selected = false;
+				}
+
+				angular.forEach(roleUser.app_users, function (data) {
+					if (data.selected == true) {
+						$scope.selectectedProfile.push(data.id);
+					} else {
+					}
+					
+				});
+
+			});
 			
-           });
-        });
-		$scope.toggle_check_box=$scope.toggle_check_box;
+			
+
+		});
+
+
+		$scope.select_all = function (roleUser) {
+			roleUser.selected = true;
+		}
+
+		$scope.select_all_at_once = function () {
+			//$scope.toggle_check_box = true;
+			angular.forEach($scope.appByRole, function (app_users) {
+				angular.forEach(app_users.app_users, function (user) {
+					user.selected = true
+				});
+			});
+		}
+
+
+		$scope.de_select_all_at_once = function () {
+			//$scope.toggle_check_box = false;
+			angular.forEach($scope.appByRole, function (app_users) {
+				angular.forEach(app_users.app_users, function (user) {
+					user.selected = false
+				});
+			});
+		}
+
+		$scope.toggle_check_box_fun = function () {
+			angular.forEach($scope.appByRole, function (app_users) {
+				angular.forEach(app_users.app_users, function (user) {
+					if ($scope.toggle_check_box) {
+						user.selected = true;
+					} else {
+						user.selected = false;
+					}
+
+				});
+			});
+		}
+
+		$scope.total_selected = total_selected;
+		if($scope.total_selected == $scope.total_number_of_element){
+		    $scope.toggle_check_box = true;
+		}else{
+		    $scope.toggle_check_box = false;
+		}
+	}, true);
+
+
+	$scope.parentChange = function (index) {
+		angular.forEach($scope.appByRole[index].app_users, function (user) {
+			user.selected = $scope.appByRole[index].selected;
+		});
+	};
+
+
+	$scope.get_all_selected_ids = '';
+	$scope.getAllData = function () {
+		var unique = $scope.selectectedProfile.filter((v, i, a) => a.indexOf(v) === i);
+		$scope.get_all_selected_ids = unique.toString();
 	}
-	
-	
-    
-    $scope.total_selected = total_selected;
-    
-  }, true);
-  
-  
-    $scope.parentChange = function(index) {
-	console.log(index);
-		angular.forEach( $scope.appByRole[index].app_users, function(user) 
-		{
-		  user.selected = $scope.appByRole[index].selected;
-        });
-  };
-  
-  
 
 
-  
-  $scope.getAllData=function(){
-  var unique = $scope.selectectedProfile.filter((v, i, a) => a.indexOf(v) === i); 
-  console.log(unique.toString());
-  }
-  
-  
- 
-  $scope.appByRole = [{"name":"CSE Branch","id":0,"app_users":[{"id":1,"name":"Computer Science Book-1","type":"CSE"},{"id":2,"name":"Computer Science Book-2","type":"CSE"},{"id":3,"name":"Computer Science Book-3","type":"CSE"},{"id":4,"name":"Computer Science Book-4","type":"CSE"},{"id":5,"name":"Computer Science Book-5","type":"CSE"},{"id":6,"name":"Computer Science Book-6","type":"CSE"},{"id":7,"name":"Computer Science Book-7","type":"CSE"},{"id":8,"name":"Computer Science Book-8","type":"CSE"},{"id":9,"name":"Computer Science Book-9","type":"CSE"},{"id":10,"name":"Computer Science Book-10","type":"CSE"}]},{"name":"Elecrical Branch","id":1,"app_users":[{"id":11,"name":"Elecrical Book-11","type":"Elecrical"},{"id":12,"name":"Elecrical Book-12","type":"Elecrical"},{"id":13,"name":"Elecrical Book-13","type":"Elecrical"},{"id":14,"name":"Elecrical Book-14","type":"Elecrical"},{"id":15,"name":"Elecrical Book-15","type":"Elecrical"},{"id":16,"name":"Elecrical Book-16","type":"Elecrical"}]},{"name":"Civil Branch","id":2,"app_users":[{"id":17,"name":"Civil Book-17","type":"Civil"},{"id":18,"name":"Civil Book-18","type":"Civil"},{"id":19,"name":"Civil Book-19","type":"Civil"}]},{"name":"Mechanical Branch","id":3,"app_users":[{"id":20,"name":"Mechanical Book-20","type":"Mechanical"},{"id":21,"name":"Mechanical Book-21","type":"Mechanical"},{"id":22,"name":"Mechanical Book-22","type":"Mechanical"}]}];
-  
+	$scope.appByRole = [{
+		"name": "CSE Branch",
+		"id": 0,
+		"app_users": [{
+			"id": 1,
+			"name": "Computer Science Book-1",
+			"type": "CSE"
+		}, {
+			"id": 2,
+			"name": "Computer Science Book-2",
+			"type": "CSE"
+		}, {
+			"id": 3,
+			"name": "Computer Science Book-3",
+			"type": "CSE"
+		}, {
+			"id": 4,
+			"name": "Computer Science Book-4",
+			"type": "CSE"
+		}, {
+			"id": 5,
+			"name": "Computer Science Book-5",
+			"type": "CSE"
+		}, {
+			"id": 6,
+			"name": "Computer Science Book-6",
+			"type": "CSE"
+		}, {
+			"id": 7,
+			"name": "Computer Science Book-7",
+			"type": "CSE"
+		}, {
+			"id": 8,
+			"name": "Computer Science Book-8",
+			"type": "CSE"
+		}, {
+			"id": 9,
+			"name": "Computer Science Book-9",
+			"type": "CSE"
+		}, {
+			"id": 10,
+			"name": "Computer Science Book-10",
+			"type": "CSE"
+		}]
+	}, {
+		"name": "Elecrical Branch",
+		"id": 1,
+		"app_users": [{
+			"id": 11,
+			"name": "Elecrical Book-11",
+			"type": "Elecrical"
+		}, {
+			"id": 12,
+			"name": "Elecrical Book-12",
+			"type": "Elecrical"
+		}, {
+			"id": 13,
+			"name": "Elecrical Book-13",
+			"type": "Elecrical"
+		}, {
+			"id": 14,
+			"name": "Elecrical Book-14",
+			"type": "Elecrical"
+		}, {
+			"id": 15,
+			"name": "Elecrical Book-15",
+			"type": "Elecrical"
+		}, {
+			"id": 16,
+			"name": "Elecrical Book-16",
+			"type": "Elecrical"
+		}]
+	}, {
+		"name": "Civil Branch",
+		"id": 2,
+		"app_users": [{
+			"id": 17,
+			"name": "Civil Book-17",
+			"type": "Civil"
+		}, {
+			"id": 18,
+			"name": "Civil Book-18",
+			"type": "Civil"
+		}, {
+			"id": 19,
+			"name": "Civil Book-19",
+			"type": "Civil"
+		}]
+	}, {
+		"name": "Mechanical Branch",
+		"id": 3,
+		"app_users": [{
+			"id": 20,
+			"name": "Mechanical Book-20",
+			"type": "Mechanical"
+		}, {
+			"id": 21,
+			"name": "Mechanical Book-21",
+			"type": "Mechanical"
+		}, {
+			"id": 22,
+			"name": "Mechanical Book-22",
+			"type": "Mechanical"
+		}]
+	}];
+
 });
 
 </script>
