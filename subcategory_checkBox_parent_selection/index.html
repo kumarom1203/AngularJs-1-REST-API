@@ -18,7 +18,7 @@
   </head>
 
   <body ng-controller="MainCtrl">
-   
+   <input type="checkbox" ng-model="toggle_check_box" ng-change="toggle_check_box_fun()"> Select All
     <ul>
       <li ng-repeat="roleUser in appByRole">
         <input type="checkbox" ng-model="roleUser.selected" ng-change="parentChange($index)">
@@ -31,11 +31,15 @@
         </ul>
       </li> 
     </ul>
+	
+
    
   
 	
 	
 	<button ng-click="getAllData();"> GET SELECTED</button>
+	<button ng-click="select_all_at_once();"> Select All At Once</button>
+	<button ng-click="de_select_all_at_once();">Deselect All At Once</button>
   </body>
 
 </html>
@@ -51,7 +55,7 @@ app.controller('MainCtrl', function($scope) {
   $scope.total_selected = 0;
   $scope.profile_name={};
   $scope.$watch('appByRole', function(appByRole){
-    
+  //$scope.toggle_check_box=false;  
     var total_selected = 0;
     $scope.selectectedProfile=[];
     angular.forEach(appByRole, function(roleUser){
@@ -86,9 +90,52 @@ app.controller('MainCtrl', function($scope) {
     });
 
     
-    $scope.select_all = function(roleUser){
-      roleUser.selected = true;
+   $scope.select_all = function(roleUser){
+     roleUser.selected = true;
+   }
+	
+	$scope.select_all_at_once = function(){
+	$scope.toggle_check_box=true; 
+	   angular.forEach( $scope.appByRole, function(app_users) 
+		{
+		   angular.forEach(app_users.app_users, function(user) 
+		   {
+		    user.selected = true
+           });
+        });
     }
+    
+	
+		$scope.de_select_all_at_once = function(){
+		$scope.toggle_check_box=false; 
+	   angular.forEach( $scope.appByRole, function(app_users) 
+		{
+		   angular.forEach(app_users.app_users, function(user) 
+		   {
+		    user.selected = false
+           });
+        });
+    }
+	
+	$scope.toggle_check_box_fun=function(){
+	 	   angular.forEach( $scope.appByRole, function(app_users) 
+		{
+		   angular.forEach(app_users.app_users, function(user) 
+		   {
+		    if($scope.toggle_check_box){
+		    user.selected = true;
+			 
+			}else{
+		    user.selected = false;
+			 
+			}
+			
+           });
+        });
+		$scope.toggle_check_box=$scope.toggle_check_box;
+	}
+	
+	
     
     $scope.total_selected = total_selected;
     
@@ -101,10 +148,10 @@ app.controller('MainCtrl', function($scope) {
 		{
 		  user.selected = $scope.appByRole[index].selected;
         });
-	
-	
   };
   
+  
+
 
   
   $scope.getAllData=function(){
