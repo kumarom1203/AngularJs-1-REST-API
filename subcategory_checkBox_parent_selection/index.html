@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html ng-app="plunker">
    <head>
@@ -47,15 +48,10 @@ app.controller('MainCtrl', function ($scope) {
 		$scope.total_number_of_element=0
 		$scope.selectectedProfile = [];
 		angular.forEach(appByRole, function (roleUser) {
-
 			roleUser.app_users_selected = 0;
-
 			angular.forEach(roleUser.app_users, function (user) {
-
 				total_selected += user.selected ? 1 : 0
-
 				roleUser.app_users_selected += user.selected ? 1 : 0
-
 				if (roleUser.app_users_selected == roleUser.app_users.length) {
 					roleUser.selected = true;
 					$scope.total_number_of_element=$scope.total_number_of_element+1;
@@ -63,7 +59,6 @@ app.controller('MainCtrl', function ($scope) {
 				    $scope.total_number_of_element=$scope.total_number_of_element+1;
 					roleUser.selected = false;
 				}
-
 				angular.forEach(roleUser.app_users, function (data) {
 					if (data.selected == true) {
 						$scope.selectectedProfile.push(data.id);
@@ -71,18 +66,13 @@ app.controller('MainCtrl', function ($scope) {
 					}
 					
 				});
-
 			});
 			
 			
-
 		});
-
-
 		$scope.select_all = function (roleUser) {
 			roleUser.selected = true;
 		}
-
 		$scope.select_all_at_once = function () {
 			//$scope.toggle_check_box = true;
 			angular.forEach($scope.appByRole, function (app_users) {
@@ -91,8 +81,6 @@ app.controller('MainCtrl', function ($scope) {
 				});
 			});
 		}
-
-
 		$scope.de_select_all_at_once = function () {
 			//$scope.toggle_check_box = false;
 			angular.forEach($scope.appByRole, function (app_users) {
@@ -101,7 +89,6 @@ app.controller('MainCtrl', function ($scope) {
 				});
 			});
 		}
-
 		$scope.toggle_check_box_fun = function () {
 			angular.forEach($scope.appByRole, function (app_users) {
 				angular.forEach(app_users.app_users, function (user) {
@@ -110,11 +97,9 @@ app.controller('MainCtrl', function ($scope) {
 					} else {
 						user.selected = false;
 					}
-
 				});
 			});
 		}
-
 		$scope.total_selected = total_selected;
 		if($scope.total_selected == $scope.total_number_of_element){
 		    $scope.toggle_check_box = true;
@@ -122,22 +107,16 @@ app.controller('MainCtrl', function ($scope) {
 		    $scope.toggle_check_box = false;
 		}
 	}, true);
-
-
 	$scope.parentChange = function (index) {
 		angular.forEach($scope.appByRole[index].app_users, function (user) {
 			user.selected = $scope.appByRole[index].selected;
 		});
 	};
-
-
 	$scope.get_all_selected_ids = '';
 	$scope.getAllData = function () {
 		var unique = $scope.selectectedProfile.filter((v, i, a) => a.indexOf(v) === i);
 		$scope.get_all_selected_ids = unique.toString();
 	}
-
-
 	$scope.appByRole = [{
 		"name": "CSE Branch",
 		"id": 0,
@@ -243,7 +222,5 @@ app.controller('MainCtrl', function ($scope) {
 			"type": "Mechanical"
 		}]
 	}];
-
 });
-
 </script>
