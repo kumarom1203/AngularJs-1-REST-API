@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html ng-app="plunker">
    <head>
@@ -7,12 +8,17 @@
      
    </head>
    <body ng-controller="MainCtrl">
+    <button ng-click="getselectedVal()">Get All Selected</button> ||  <button ng-click="getselectedValBetween()">Get All Selected In Between 10 to 17</button> 
+    <br>{{getselectedVal_show}}
+    <br> 
   <table width="100%" border="1" style="border-collapse:collapse">
-	<tr><th></th><th>id</th><th>Name</th><th>Type</th></tr>
+	<tr><th>
+     <input type="checkbox" ng-model="check_list['selectAll']" ng-change="selectAllIds()">
+  </th><th>id</th><th>Name</th><th>Type</th></tr>
 	
-	<tr ng-repeat="user in appByRole"><td></td><td>{{user.id}}</td><td>{{user.name}}</td><td>{{user.type}}</td></tr>
-	
-	
+	<tr ng-repeat="user in appByRole"><td>
+   <input type="checkbox"  ng-model="selectedIdList[user.id]" ng-change="isSingleChecked()"> 
+  </td><td>{{user.id}}</td><td>{{user.name}}</td><td>{{user.type}}</td></tr>
   </table>
    </body>
 </html>
@@ -21,6 +27,74 @@
 <script>
 var app = angular.module('plunker', []);
 app.controller('MainCtrl', function ($scope) {
+  $scope.getselectedVal =function (){
+    console.log($scope.itemArr);
+    $scope.getselectedVal_show=$scope.itemArr;
+  }
+
+
+  $scope.getselectedValBetween =function (){
+    $scope.getselectedVal_show=$scope.itemArr;
+
+     $scope.validIdArr=[];
+      angular.forEach($scope.appByRole,function(val,key){
+        if(val.id>9 && val.id<18){
+          if($scope.itemArr.indexOf(val.id)!==-1)
+          $scope.validIdArr.push(parseInt(val.id));
+        }
+      });
+       $scope.getselectedVal_show=$scope.validIdArr;
+       console.log($scope.validIdArr);
+      
+  }
+
+
+$scope.getselectedVal_show=[];
+  $scope.selectedIdList={};
+    $scope.itemArr=[];
+    $scope.selectAll=false;
+
+    $scope.check_list = {'selectAll' : false};
+    $scope.selectAllIds = function()
+    {
+      console.log('hii');
+         $scope.itemArr=[];
+         if($scope.check_list.selectAll) {
+            angular.forEach($scope.appByRole,function(val,key){
+              $scope.itemArr.push(parseInt(val.id));
+              $scope.selectedIdList[val.id]=true;
+            });
+         }
+         else
+         {
+            $scope.itemArr=[];
+            $scope.selectedIdList = {};
+         }
+
+    }
+
+    $scope.isSingleChecked = function()
+    {
+      $scope.itemArr=[];
+      var obj=$scope.selectedIdList;
+      for(prop in obj) {
+        if(obj[prop]){
+         $scope.itemArr.push(parseInt(prop));
+        }
+      }
+      
+       if($scope.itemArr.length==$scope.appByRole.length)
+       {
+         $scope.check_list.selectAll=true;
+       }
+       else{
+         $scope.check_list.selectAll=false;
+       }
+    }
+
+  
+
+
 	$scope.appByRole = [{"id":1,"name":"Computer Science Book-1","type":"CSE"},{"id":2,"name":"Computer Science Book-2","type":"CSE"},{"id":3,"name":"Computer Science Book-3","type":"CSE"},{"id":4,"name":"Computer Science Book-4","type":"CSE"},{"id":5,"name":"Computer Science Book-5","type":"CSE"},{"id":6,"name":"Computer Science Book-6","type":"CSE"},{"id":7,"name":"Computer Science Book-7","type":"CSE"},{"id":8,"name":"Computer Science Book-8","type":"CSE"},{"id":9,"name":"Computer Science Book-9","type":"CSE"},{"id":10,"name":"Computer Science Book-10","type":"CSE"},{"id":11,"name":"Elecrical Book-11","type":"Elecrical"},{"id":12,"name":"Elecrical Book-12","type":"Elecrical"},{"id":13,"name":"Elecrical Book-13","type":"Elecrical"},{"id":14,"name":"Elecrical Book-14","type":"Elecrical"},{"id":15,"name":"Elecrical Book-15","type":"Elecrical"},{"id":16,"name":"Elecrical Book-16","type":"Elecrical"},{"id":17,"name":"Civil Book-17","type":"Civil"},{"id":18,"name":"Civil Book-18","type":"Civil"},{"id":19,"name":"Civil Book-19","type":"Civil"},{"id":20,"name":"Mechanical Book-20","type":"Mechanical"},{"id":21,"name":"Mechanical Book-21","type":"Mechanical"},{"id":22,"name":"Mechanical Book-22","type":"Mechanical"}];
 });
 </script>
