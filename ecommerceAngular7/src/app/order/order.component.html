@@ -1,0 +1,46 @@
+<br><br><br>
+
+<div class="container">
+	
+
+    <div class="row">
+		<div class="col-sm-7" style="margin-bottom: 20px;">
+			<h3><b>Missi Department Store</b></h3>
+		</div>
+		
+	</div>
+
+	<div class="row">
+		
+		<h3 style="text-align: center;">Your Order Place With Below Details</h3>
+		<table class="table table-bordered">
+			<thead>
+			  <tr>
+				<th>Name</th>
+				<th>Quantity</th>
+				<th>Action</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr *ngFor="let product of productList">
+				<td>{{product.product_name}}</td>
+				<td>{{product.product_unit}}</td>
+				<td>
+					
+
+					{{product.product_quantity}}
+					
+				</td>
+			  </tr>
+		
+			</tbody>
+		  </table>
+
+	</div>
+</div>
+
+
+
+
+
+
