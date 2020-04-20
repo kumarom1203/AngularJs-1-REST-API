@@ -9,6 +9,7 @@ import { ShopcategoryComponent } from './shopcategory/shopcategory.component';
 import { ShopdetailsComponent } from './shopdetails/shopdetails.component';
 import { CartviewComponent } from './cartview/cartview.component';
 import { OrderComponent } from './order/order.component';
+import { ShopdetailstwoComponent } from './shopdetailstwo/shopdetailstwo.component';
 
 
 
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'shopcategory', component: ShopcategoryComponent },
   { path: 'shopdetails', component: ShopdetailsComponent },
   { path: 'cartview', component: CartviewComponent },
-  { path: 'order', component: OrderComponent }
+  { path: 'order', component: OrderComponent },
+  { path: 'shopdetailstwo', component: ShopdetailstwoComponent }
 ];
 
 @NgModule({

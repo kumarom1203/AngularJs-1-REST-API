@@ -1,0 +1,333 @@
+<br><br><br>
+
+<div class="container">
+  <div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div *ngIf="countProduct" style="margin-bottom: 20px; text-align: right;">
+      <h5><b>{{countProduct}} Product Added &nbsp;&nbsp;&nbsp;&nbsp;</b>
+        <a routerLink="/cartview">
+        <button style="line-height: 27px; border: 0px solid; background-color: #0e2c44; padding: 2px 18px; color: #eae751; border-radius: 3px;">My Cart ({{countProduct}})</button>
+        </a>
+      </h5>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 example" style="margin-bottom: 20px; overflow-x: scroll; height: 40px; padding-top: 11px;">
+        <span class="scroll">Weats</span>
+        <span class="scroll">Flours</span>
+        <span class="scroll">Chikens</span>
+        <span class="scroll">Oils</span>
+        <span class="scroll">Rice</span>
+      </div>
+      <div class="col-sm-12" style="margin-bottom: 20px;">
+        <div style="background-color: #c5c5c5; margin-bottom: 5px; width: 100%; padding: 15px 10px; text-align: left;">
+          <b>Flours</b>
+          <span class="scroll" style="float: right; margin-top: -7px;">5 Items</span>
+        </div>
+      </div>
+  
+  
+  
+    <div *ngFor="let item of itemList.product; let i = index; let hide = false; let disabled = true" class="col-sm-12" style="margin-bottom: 20px;">
+        <div style="padding: 20px; border-radius: 4px; border: 1px solid #dba658; min-height: 180px;">
+          <div style="float:left; margin-right:10px">
+            <img style="width: 120px; margin-left: -15px; margin-top: -8px;" alt="Angular Logo" src="../assets/icons/rice-packaging.png" >
+          </div>
+          <div>
+            <p style="text-transform: capitalize;"><b>Gram Flower Rich Rice Mill Pure Pack - {{i}}</b></p>
+            <br>
+            <select (change)="selectProduct(i, $event.target.value, 'Gram Flower Rich Rice Mill Pure Pack - '+i); disabled=!disabled" class="form-control" style="width: -webkit-fill-available;">
+              <option>Select Quantity</option>
+  
+              <option value="250 Gram">250 Gram</option>
+              <option value="1 KG">1 KG</option>
+              <option value="5 KG">5 KG</option>
+              
+            </select>
+            <br>
+            <div class="row">
+              <div class="col-sm-3" style="padding-left: 0px !important;">
+                <!--
+                  <select (change)="setQuantity('1', $event.target.value)" class="form-control" style="width: -webkit-fill-available;">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    </select>
+                  -->
+              </div>
+              <div class="col-sm-9" style="padding-left: 0px !important; text-align: right;">
+                
+                
+              <!--
+                <button [disabled]= "item.qty<1" *ngIf="hide" style="padding: 0px 9px; background-color: #ffffff; border: 1px solid #e5c750; border-radius: 2px;" (click)="updateCartCount(8, 'minus'); item.qty=item.qty-1"><b>-</b></button>
+              -->
+              <button [disabled]= "item.qty<1" *ngIf="hide" style="padding: 0px 9px; background-color: #ffffff; border: 1px solid #e5c750; border-radius: 2px;" (click)="updateCartCount(i, 'minus'); item.qty=item.qty-1"><b>-</b></button>
+                
+              <span *ngIf="hide"> {{item.qty}} </span>
+                
+              <button *ngIf="hide" style="padding: 0px 9px; background-color: #ffffff; border: 1px solid #e5c750; border-radius: 2px;" (click)="updateCartCount(i,'plus'); item.qty=item.qty+1"><b>+</b></button>
+  
+              
+              
+  
+              <button [disabled]= "!disabled" *ngIf="!hide" (click)="addProduct(i); hide = !hide" style="line-height: 27px; border: 0px solid; background-color: #0e2c44; padding: 2px 18px; color: #eae751; border-radius: 3px; margin-top: 3px;">ADD</button>
+              
+  
+            <!--
+              <button *ngIf="hide" (click)="addProduct('1',$event); " style="line-height: 27px; border: 0px solid; background-color: #0e2c44; padding: 2px 18px; color: #eae751; border-radius: 3px; margin-top: 3px;">BBB</button>
+  
+            -->
+                      <!--
+                <button (click)="addProduct('1',$event); hide = !hide" style="line-height: 27px; border: 0px solid; background-color: #0e2c44; padding: 2px 18px; color: #eae751; border-radius: 3px; margin-top: 3px;">Add</button>
+            -->
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+  
+  <!--
+      <div class="col-sm-12" style="margin-bottom: 20px;">
+        <div style="padding: 20px; border-radius: 4px; border: 1px solid #dba658; min-height: 180px;">
+          <div style="float:left; margin-right:10px">
+            <img style="width: 120px; margin-left: -15px; margin-top: -8px;" alt="Angular Logo" src="../assets/icons/rice-packaging.png" >
+          </div>
+          <div>
+            <p style="text-transform: capitalize;"><b>Gram Flower Rich Rice Mill Pure Pack - 2 </b></p>
+            <br>
+            <select (change)="selectProduct('6', $event.target.value, 'Gram Flower Rich Rice Mill Pure Pack - 2')" class="form-control" style="width: -webkit-fill-available;">
+              <option>Select Quantity</option>
+              <option value="250 Gram">250 Gram</option>
+              <option value="1 KG">1 KG</option>
+              <option value="5 KG">5 KG</option>
+            </select>
+            <br>
+            <div class="row">
+              <div class="col-sm-3" style="padding-left: 0px !important;">
+                <select (change)="setQuantity('6', $event.target.value)" class="form-control" style="width: -webkit-fill-available;">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+              </div>
+              <div class="col-sm-4" style="padding-left: 0px !important;">
+                <button (click)="addProduct('6')" style="line-height: 27px; border: 0px solid; background-color: #0e2c44; padding: 2px 18px; color: #eae751; border-radius: 3px; margin-top: 3px;">Add</button>
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+  
+  
+  
+      <div class="col-sm-12" style="margin-bottom: 20px;">
+        <div style="padding: 20px; border-radius: 4px; border: 1px solid #dba658; min-height: 180px;">
+          <div style="float:left; margin-right:10px">
+            <img style="width: 120px; margin-left: -15px; margin-top: -8px;" alt="Angular Logo" src="../assets/icons/rice-packaging.png" >
+          </div>
+          <div>
+            <p style="text-transform: capitalize;"><b>Gram Flower Rich Rice Mill Pure Pack - 3 </b></p>
+            <br>
+            <select (change)="selectProduct('8', $event.target.value, 'Gram Flower Rich Rice Mill Pure Pack - 3')" class="form-control" style="width: -webkit-fill-available;">
+              <option>Select Quantity</option>
+              <option value="250 Gram">250 Gram</option>
+              <option value="1 KG">1 KG</option>
+              <option value="5 KG">5 KG</option>
+            </select>
+            <br>
+            <div class="row">
+              <div class="col-sm-3" style="padding-left: 0px !important;">
+                <select (change)="setQuantity('8', $event.target.value)" class="form-control" style="width: -webkit-fill-available;">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+              </div>
+              <div class="col-sm-4" style="padding-left: 0px !important;">
+                <button (click)="addProduct('8')" style="line-height: 27px; border: 0px solid; background-color: #0e2c44; padding: 2px 18px; color: #eae751; border-radius: 3px; margin-top: 3px;">Add</button>
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+    -->
+  
+  
+  
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+  <!--
+    <app-nav></app-nav>
+    <br><br><br>
+    
+    <div class="container">
+    
+    
+       <div class="row">
+      <div class="col-sm-7" style="margin-bottom: 20px;">
+        <h3><b>Missi Department Store</b></h3>
+      </div>
+      <div class="col-sm-5" *ngIf="countProduct" style="margin-bottom: 20px; text-align: right;">
+        <h5><b>{{countProduct}} Product Added &nbsp;&nbsp;&nbsp;&nbsp;</b>
+        <a routerLink="/cartview">
+          <button style="line-height: 27px; border: 0px solid; background-color: #0e2c44; padding: 2px 18px; color: #eae751; border-radius: 3px;">My Cart ({{countProduct}})</button>
+          </a>
+    
+          </h5>
+      </div>
+    </div>
+        
+    
+    <div class="row">
+      
+        <div class="col-sm-4" style="margin-bottom: 20px;">
+        
+          <div style="padding: 20px; border-radius: 4px; border: 1px solid #dba658; min-height: 180px;">
+            <div style="float:left; margin-right:10px">
+              <img style="width: 120px; margin-left: -15px; margin-top: -8px;" alt="Angular Logo" src="../assets/icons/rice-packaging.png" >
+            </div>
+            <div>
+              <p style="text-transform: capitalize;"><b>Gram Flower Rich Rice Mill Pure Pack - 1</b></p>
+               <br>
+               <select (change)="selectProduct('1', $event.target.value, 'Gram Flower Rich Rice Mill Pure Pack - 1')" class="form-control" style="width: -webkit-fill-available;">
+                 <option>Select Quantity</option>
+                 <option value="250 Gram">250 Gram</option>
+                 <option value="1 KG">1 KG</option>
+                 <option value="5 KG">5 KG</option>
+               </select>
+               <br>
+        
+        <div class="row">
+    
+          <div class="col-sm-3" style="padding-left: 0px !important;">
+          <select (change)="setQuantity('1', $event.target.value)" class="form-control" style="width: -webkit-fill-available;">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            </select>
+          </div>
+          <div class="col-sm-4" style="padding-left: 0px !important;">
+          <button (click)="addProduct('1')" style="line-height: 27px; border: 0px solid; background-color: #0e2c44; padding: 2px 18px; color: #eae751; border-radius: 3px; margin-top: 3px;">Add</button>
+          </div>
+        </div>
+        
+        
+               <br>
+            </div>
+          </div>
+        
+      </div>
+      
+      <div class="col-sm-4" style="margin-bottom: 20px;">
+        
+        <div style="padding: 20px; border-radius: 4px; border: 1px solid #dba658; min-height: 180px;">
+          <div style="float:left; margin-right:10px">
+            <img style="width: 120px; margin-left: -15px; margin-top: -8px;" alt="Angular Logo" src="../assets/icons/rice-packaging.png" >
+          </div>
+          <div>
+            <p style="text-transform: capitalize;"><b>Gram Flower Rich Rice Mill Pure Pack - 2 </b></p>
+      <br>
+      <select (change)="selectProduct('6', $event.target.value, 'Gram Flower Rich Rice Mill Pure Pack - 2')" class="form-control" style="width: -webkit-fill-available;">
+        <option>Select Quantity</option>
+        <option value="250 Gram">250 Gram</option>
+        <option value="1 KG">1 KG</option>
+        <option value="5 KG">5 KG</option>
+      </select>
+      <br>
+      
+         <div class="row">
+    
+           <div class="col-sm-3" style="padding-left: 0px !important;">
+      <select (change)="setQuantity('6', $event.target.value)" class="form-control" style="width: -webkit-fill-available;">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        </select>
+           </div>
+      <div class="col-sm-4" style="padding-left: 0px !important;">
+      <button (click)="addProduct('6')" style="line-height: 27px; border: 0px solid; background-color: #0e2c44; padding: 2px 18px; color: #eae751; border-radius: 3px; margin-top: 3px;">Add</button>
+      </div>
+    </div>
+      
+      <br>
+          </div>
+        </div>
+      
+    </div>
+    
+    <div class="col-sm-4" style="margin-bottom: 20px;">
+        
+      <div style="padding: 20px; border-radius: 4px; border: 1px solid #dba658; min-height: 180px;">
+        <div style="float:left; margin-right:10px">
+          <img style="width: 120px; margin-left: -15px; margin-top: -8px;" alt="Angular Logo" src="../assets/icons/rice-packaging.png" >
+        </div>
+        <div>
+          <p style="text-transform: capitalize;"><b>Gram Flower Rich Rice Mill Pure Pack - 3 </b></p>
+    <br>
+    <select (change)="selectProduct('8', $event.target.value, 'Gram Flower Rich Rice Mill Pure Pack - 3')" class="form-control" style="width: -webkit-fill-available;">
+      <option>Select Quantity</option>
+      <option value="250 Gram">250 Gram</option>
+      <option value="1 KG">1 KG</option>
+      <option value="5 KG">5 KG</option>
+    </select>
+    <br>
+    
+    <div class="row">
+    
+           <div class="col-sm-3" style="padding-left: 0px !important;">
+      <select (change)="setQuantity('8', $event.target.value)" class="form-control" style="width: -webkit-fill-available;">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        </select>
+           </div>
+      <div class="col-sm-4" style="padding-left: 0px !important;">
+      <button (click)="addProduct('8')" style="line-height: 27px; border: 0px solid; background-color: #0e2c44; padding: 2px 18px; color: #eae751; border-radius: 3px; margin-top: 3px;">Add</button>
+      </div>
+    </div>
+    
+    
+    <br>
+        </div>
+      </div>
+    
+    </div>
+       
+    
+     
+    
+     
+    
+      
+    
+    
+    </div>
+    </div>
+    
+    
+    
+    
+    
+    -->

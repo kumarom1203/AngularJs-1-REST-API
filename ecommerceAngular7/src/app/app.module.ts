@@ -15,6 +15,7 @@ import { ShopdetailsComponent } from './shopdetails/shopdetails.component';
 import { CartviewComponent } from './cartview/cartview.component';
 import { OrderComponent } from './order/order.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { ShopdetailstwoComponent } from './shopdetailstwo/shopdetailstwo.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     ShopcategoryComponent,
     ShopdetailsComponent,
     CartviewComponent,
-    OrderComponent
+    OrderComponent,
+    ShopdetailstwoComponent
   ],
   imports: [
     BrowserModule,
