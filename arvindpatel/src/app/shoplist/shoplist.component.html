@@ -1,0 +1,305 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+		</div>
+		<div class="col-md-6" style="padding-bottom:15px; background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(148,77,18,1) 100%, rgba(0,212,255,1) 100%); padding-top: 25px;">
+			<div class="row">
+
+				<div class="col-md-12">
+					<div>
+						<a routerLink="/shop"> 
+							<img  alt="Angular Logo" src="../assets/icons/icons8-back-arrow-26.png" >
+							</a>
+					<span style="color: #feb351; font-size: 18px; margin-left: 18px;">
+						Select Shop</span>
+				
+					
+					
+
+				</div>
+				</div>
+			
+			
+
+			</div>
+		</div>
+	
+	</div>
+</div>
+<br>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3"></div>
+
+	<div class="col-md-6">
+		<table style="width:100%">
+        <tr>
+		<td>
+		<div class="form-group">
+			<input class="form-control" id="ex1"  [(ngModel)]="searchText" type="text" placeholder="Ꝗ Search Shop">
+		 </div>
+		</td>
+		 
+		 <td>
+		 <div class="form-group" style="margin-left: 5px;">
+		 <select class="form-control" (change)="searchByDistance($event.target.value)">
+			<option value="1">1 KM</option>
+			<option value="2">2 KM</option>
+			<option value="5">5 KM</option>
+		</select>
+		</div>
+		</td>
+		</tr>
+	</table>
+
+	
+
+	<div class="row">
+		
+		<div class="col-md-12" style="margin-bottom: 20px;">
+			<b> ♀ Near by store around {{distance}} KM</b>
+		</div>
+
+			<div *ngFor="let item of shopList | filter : searchText : 'name'" class="col-md-12" style="margin-bottom: 20px;">
+			
+				<div style="padding: 20px; border-radius: 4px; border: 1px solid #dba658;">
+					<div style="float:left; margin-right:10px">
+						<img style="width: 90px; margin-left: -15px; margin-top: -8px;" alt="Angular Logo" src="../assets/icons/images.png" >
+					</div>
+					<div>
+						<p style="text-transform: capitalize;"><b>{{item.name}}</b></p>
+						<p style="color: #ffb100; font-size: 20px;"><b><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></b></p>
+						<p ><b style="text-transform: capitalize; font-size: 20px;">♀</b> Electronics City Phase - 1, 0KM</p>
+						<br>
+						<a routerLink="/shopcategory">
+						<button style="float: right; border: 0px solid; background-color: #0e2c44; padding: 2px 6px; color: #eae751;">Shop Now</button></a>
+						<br>
+					</div>
+				</div>
+
+		   </div>
+
+		
+
+<!--
+		<div class="col-md-12" style="margin-bottom: 20px;">
+			
+			<div style="padding: 20px; border-radius: 4px; border: 1px solid #dba658;">
+				<div style="float:left; margin-right:10px">
+					<img style="width: 90px; margin-left: -15px; margin-top: -8px;" alt="Angular Logo" src="../assets/icons/images.png" >
+				</div>
+				<div>
+					<p style="text-transform: capitalize;"><b>Missi Department Store</b></p>
+					<p style="color: #ffb100; font-size: 20px;"><b><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></b></p>
+					<p ><b style="text-transform: capitalize; font-size: 20px;">♀</b> Electronics City Phase - 1, 0KM</p>
+					<br>
+					<a routerLink="/shopcategory">
+					<button style="float: right; border: 0px solid; background-color: #0e2c44; padding: 2px 6px; color: #eae751;">Shop Now</button></a>
+					<br>
+				</div>
+			</div>
+		
+	</div>
+
+	<div class="col-md-12" style="margin-bottom: 20px;">
+			
+		<div style="padding: 20px; border-radius: 4px; border: 1px solid #dba658;">
+			<div style="float:left; margin-right:10px">
+				<img style="width: 90px; margin-left: -15px; margin-top: -8px;" alt="Angular Logo" src="../assets/icons/images.png" >
+			</div>
+			<div>
+				<p style="text-transform: capitalize;"><b>Missi Department Store</b></p>
+				<p style="color: #ffb100; font-size: 20px;"><b><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></b></p>
+				<p ><b style="text-transform: capitalize; font-size: 20px;">♀</b> Electronics City Phase - 1, 0KM</p>
+				<br>
+				<a routerLink="/shopcategory">
+				<button style="float: right; border: 0px solid; background-color: #0e2c44; padding: 2px 6px; color: #eae751;">Shop Now</button></a>
+				<br>
+			</div>
+		</div>
+	
+</div>
+
+<div class="col-md-12" style="margin-bottom: 20px;">
+			
+	<div style="padding: 20px; border-radius: 4px; border: 1px solid #dba658;">
+		<div style="float:left; margin-right:10px">
+			<img style="width: 90px; margin-left: -15px; margin-top: -8px;" alt="Angular Logo" src="../assets/icons/images.png" >
+		</div>
+		<div>
+			<p style="text-transform: capitalize;"><b>Missi Department Store</b></p>
+			<p style="color: #ffb100; font-size: 20px;"><b><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></b></p>
+			<p ><b style="text-transform: capitalize; font-size: 20px;">♀</b> Electronics City Phase - 1, 0KM</p>
+			<br>
+			<a routerLink="/shopcategory">
+			<button style="float: right; border: 0px solid; background-color: #0e2c44; padding: 2px 6px; color: #eae751;">Shop Now</button></a>
+			<br>
+		</div>
+	</div>
+
+</div>
+
+<div class="col-md-12" style="margin-bottom: 20px;">
+			
+	<div style="padding: 20px; border-radius: 4px; border: 1px solid #dba658;">
+		<div style="float:left; margin-right:10px">
+			<img style="width: 90px; margin-left: -15px; margin-top: -8px;" alt="Angular Logo" src="../assets/icons/images.png" >
+		</div>
+		<div>
+			<p style="text-transform: capitalize;"><b>Missi Department Store</b></p>
+			<p style="color: #ffb100; font-size: 20px;"><b><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></b></p>
+			<p ><b style="text-transform: capitalize; font-size: 20px;">♀</b> Electronics City Phase - 1, 0KM</p>
+			<br>
+			<a routerLink="/shopcategory">
+			<button style="float: right; border: 0px solid; background-color: #0e2c44; padding: 2px 6px; color: #eae751;">Shop Now</button></a>
+			<br>
+		</div>
+	</div>
+
+</div>
+-->
+		
+  	</div>
+
+
+</div>
+
+
+
+	</div>
+
+	<div class="col-md-3"></div>
+</div>
+
+
+
+<!--
+
+<div class="container">
+	<div class="form-group row">
+		<div class="col-sm-4" style="margin-bottom: 8px;">
+		 
+		  <input class="form-control" id="ex1" type="text" placeholder="Ꝗ Search Shop">
+		</div>
+		<div class="col-sm-2">
+		 
+			<select class="form-control">
+				<option>1 KM</option>
+				<option>2 KM</option>
+				<option>5 KM</option>
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		
+		<div class="col-sm-12" style="margin-bottom: 20px;">
+			<b> ♀ Near by store around 1KM</b>
+		</div>
+			<div class="col-sm-4" style="margin-bottom: 20px;">
+			
+				<div style="padding: 20px; border-radius: 4px; border: 1px solid #dba658;">
+					<div style="float:left; margin-right:10px">
+						<img style="width: 90px; margin-left: -15px; margin-top: -8px;" alt="Angular Logo" src="../assets/icons/images.png" >
+					</div>
+					<div>
+						<p style="text-transform: capitalize;"><b>Missi Department Store</b></p>
+						<p style="color: #ffb100; font-size: 20px;"><b><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></b></p>
+						<p ><b style="text-transform: capitalize; font-size: 20px;">♀</b> Electronics City Phase - 1, 0KM</p>
+						<br>
+						<a routerLink="/shopcategory">
+						<button style="float: right; border: 0px solid; background-color: #0e2c44; padding: 2px 6px; color: #eae751;">Shop Now</button></a>
+						<br>
+					</div>
+				</div>
+			
+		</div>
+
+		
+
+
+		<div class="col-sm-4" style="margin-bottom: 20px;">
+			
+			<div style="padding: 20px; border-radius: 4px; border: 1px solid #dba658;">
+				<div style="float:left; margin-right:10px">
+					<img style="width: 90px; margin-left: -15px; margin-top: -8px;" alt="Angular Logo" src="../assets/icons/images.png" >
+				</div>
+				<div>
+					<p style="text-transform: capitalize;"><b>Missi Department Store</b></p>
+					<p style="color: #ffb100; font-size: 20px;"><b><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></b></p>
+					<p ><b style="text-transform: capitalize; font-size: 20px;">♀</b> Electronics City Phase - 1, 0KM</p>
+					<br>
+					<a routerLink="/shopcategory">
+					<button style="float: right; border: 0px solid; background-color: #0e2c44; padding: 2px 6px; color: #eae751;">Shop Now</button></a>
+					<br>
+				</div>
+			</div>
+		
+	</div>
+
+	<div class="col-sm-4" style="margin-bottom: 20px;">
+			
+		<div style="padding: 20px; border-radius: 4px; border: 1px solid #dba658;">
+			<div style="float:left; margin-right:10px">
+				<img style="width: 90px; margin-left: -15px; margin-top: -8px;" alt="Angular Logo" src="../assets/icons/images.png" >
+			</div>
+			<div>
+				<p style="text-transform: capitalize;"><b>Missi Department Store</b></p>
+				<p style="color: #ffb100; font-size: 20px;"><b><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></b></p>
+				<p ><b style="text-transform: capitalize; font-size: 20px;">♀</b> Electronics City Phase - 1, 0KM</p>
+				<br>
+				<a routerLink="/shopcategory">
+				<button style="float: right; border: 0px solid; background-color: #0e2c44; padding: 2px 6px; color: #eae751;">Shop Now</button></a>
+				<br>
+			</div>
+		</div>
+	
+</div>
+
+<div class="col-sm-4" style="margin-bottom: 20px;">
+			
+	<div style="padding: 20px; border-radius: 4px; border: 1px solid #dba658;">
+		<div style="float:left; margin-right:10px">
+			<img style="width: 90px; margin-left: -15px; margin-top: -8px;" alt="Angular Logo" src="../assets/icons/images.png" >
+		</div>
+		<div>
+			<p style="text-transform: capitalize;"><b>Missi Department Store</b></p>
+			<p style="color: #ffb100; font-size: 20px;"><b><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></b></p>
+			<p ><b style="text-transform: capitalize; font-size: 20px;">♀</b> Electronics City Phase - 1, 0KM</p>
+			<br>
+			<a routerLink="/shopcategory">
+			<button style="float: right; border: 0px solid; background-color: #0e2c44; padding: 2px 6px; color: #eae751;">Shop Now</button></a>
+			<br>
+		</div>
+	</div>
+
+</div>
+
+<div class="col-sm-4" style="margin-bottom: 20px;">
+			
+	<div style="padding: 20px; border-radius: 4px; border: 1px solid #dba658;">
+		<div style="float:left; margin-right:10px">
+			<img style="width: 90px; margin-left: -15px; margin-top: -8px;" alt="Angular Logo" src="../assets/icons/images.png" >
+		</div>
+		<div>
+			<p style="text-transform: capitalize;"><b>Missi Department Store</b></p>
+			<p style="color: #ffb100; font-size: 20px;"><b><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></b></p>
+			<p ><b style="text-transform: capitalize; font-size: 20px;">♀</b> Electronics City Phase - 1, 0KM</p>
+			<br>
+			<a routerLink="/shopcategory">
+			<button style="float: right; border: 0px solid; background-color: #0e2c44; padding: 2px 6px; color: #eae751;">Shop Now</button></a>
+			<br>
+		</div>
+	</div>
+
+</div>
+		
+  	</div>
+
+
+</div>
+
+-->
+
+
+

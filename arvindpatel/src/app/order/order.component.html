@@ -1,0 +1,173 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+		</div>
+		<div class="col-md-6" style="padding-bottom:15px; background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(148,77,18,1) 100%, rgba(0,212,255,1) 100%); padding-top: 25px;">
+			<div class="row">
+
+				<div class="col-md-12">
+					<div>
+					<img  alt="Angular Logo" src="../assets/icons/icons8-back-arrow-26.png" >
+					<span style="color: #feb351; font-size: 18px; margin-left: 18px;">
+						Missi Department Stores</span>
+				
+					
+					
+
+				</div>
+				</div>
+			
+			
+
+			</div>
+		</div>
+	
+	</div>
+</div>
+<br>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3"></div>
+
+	<div class="col-md-6">
+		<h3>Your Order Placed Successfully</h3>
+		<table class="table table-bordered">
+			<thead>
+			  <tr>
+				<th>Name</th>
+				<th>Quantity</th>
+				<th>Action</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr *ngFor="let product of productList">
+				<td>{{product.product_name}}</td>
+				<td>{{product.product_unit}}</td>
+				<td>
+					
+
+					{{product.product_quantity}}
+					
+
+				</td>
+			  </tr>
+		
+			</tbody>
+		  </table>
+
+		</div>
+		<div class="col-md-3"></div>
+		</div>
+		</div>
+
+
+
+
+
+<!--
+	<app-nav></app-nav>
+<br><br><br>
+
+<div class="container">
+	
+
+    <div class="row">
+		<div class="col-sm-7" style="margin-bottom: 20px;">
+			<h3><b>Missi Department Store</b></h3>
+		</div>
+		<div class="col-sm-5" style="margin-bottom: 20px; text-align: right;">
+			<h5><b>{{countProduct}} Product Added &nbsp;&nbsp;&nbsp;&nbsp;</b>
+			<a routerLink="/order">
+				<button style="line-height: 27px; border: 0px solid; background-color: #0e2c44; padding: 2px 18px; color: #eae751; border-radius: 3px;">Request Quote</button>
+				</a>
+
+				</h5>
+		</div>
+	</div>
+
+	<div class="row">
+		
+		
+		<table class="table table-bordered">
+			<thead>
+			  <tr>
+				<th>Name</th>
+				<th>Quantity</th>
+				<th>Action</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr *ngFor="let product of productList">
+				<td>{{product.product_name}}</td>
+				<td>{{product.product_unit}}</td>
+				<td>
+					<button style="padding: 0px 9px; background-color: #ffffff; border: 1px solid #e5c750; border-radius: 2px;" (click)="updateCartCount(product.product_id, 'minus')"><b>-</b></button>
+
+					{{product.product_quantity}}
+					<button style="padding: 0px 9px; background-color: #ffffff; border: 1px solid #e5c750; border-radius: 2px;" (click)="updateCartCount(product.product_id,'plus')"><b>+</b></button>
+
+				</td>
+			  </tr>
+		
+			</tbody>
+		  </table>
+
+	</div>
+</div>
+
+
+-->
+
+
+
+
+
+<!--
+	<app-nav></app-nav>
+<br><br><br>
+
+<div class="container">
+	
+
+    <div class="row">
+		<div class="col-sm-7" style="margin-bottom: 20px;">
+			<h3><b>Missi Department Store</b></h3>
+		</div>
+		
+	</div>
+
+	<div class="row">
+		
+		<h3 style="text-align: center;">Your Order Place With Below Details</h3>
+		<table class="table table-bordered">
+			<thead>
+			  <tr>
+				<th>Name</th>
+				<th>Quantity</th>
+				<th>Action</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr *ngFor="let product of productList">
+				<td>{{product.product_name}}</td>
+				<td>{{product.product_unit}}</td>
+				<td>
+					
+
+					{{product.product_quantity}}
+					
+				</td>
+			  </tr>
+		
+			</tbody>
+		  </table>
+
+	</div>
+</div>
+-->
+
+
+
+
+
