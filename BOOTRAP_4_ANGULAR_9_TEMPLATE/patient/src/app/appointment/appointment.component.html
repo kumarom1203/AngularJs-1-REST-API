@@ -1,0 +1,125 @@
+<div class="container" style="margin-top: 12px;">
+    <div class="row card_shadow">
+
+
+        
+        <div class="col-md-12" style="margin-top: 15px;">
+        
+                
+                    
+                    
+                    
+
+            
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="email">Select date</label>
+                        <input type="date" (change)="changeDate($event.target.value)" [min]="todayDate" [value]="selectedDate" class="form-control" style="width: -webkit-fill-available;" >
+                      </div>
+                </div>
+
+                <div class="col-md-6">
+
+                    
+                    
+
+                        <div class="form-group">
+                            <label for="email">Select Doctor</label>
+                            <select (change)="selectDoctor($event.target.value)" class="form-control" style="width: -webkit-fill-available;">
+                                <option value="0">Select Doctor</option>
+                                <option value="1">Doctor 1</option>
+                                <option value="2">Doctor 2</option>
+                                <option value="3">Doctor 3</option>
+                            </select>
+                          </div>
+                          
+
+                </div>
+
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <p><b>Available Slots</b></p>
+            <a style="text-decoration: none;" href="javascript:void(0)" (click) = "setTime('8:00 AM - 10:00 AM')" data-toggle="modal" data-target="#myModal">
+            <div class="doc-slot-list">
+                <i class="fa fa-clock-o" aria-hidden="true"></i> 8:00 AM - 10:00 AM
+                
+            </div>
+            </a>
+
+            <a style="text-decoration: none;" href="javascript:void(0)" (click) = "setTime('10:00 AM - 12:00 AM')" data-toggle="modal" data-target="#myModal">
+            <div class="doc-slot-list" >
+                <i class="fa fa-clock-o" aria-hidden="true"></i> 10:00 AM - 12:00 AM
+                
+            </div>
+            </a>
+
+            <a style="text-decoration: none;" href="javascript:void(0)" (click) = "setTime('02:00 PM - 04:00 PM')" data-toggle="modal" data-target="#myModal">
+            <div class="doc-slot-list">
+                <i class="fa fa-clock-o" aria-hidden="true"></i> 02:00 PM - 04:00 PM
+                
+            </div>
+            </a>
+            <a style="text-decoration: none;" href="javascript:void(0)" (click) = "setTime('05:00 PM - 08:00 PM')" data-toggle="modal" data-target="#myModal">
+            <div class="doc-slot-list">
+                <i class="fa fa-clock-o" aria-hidden="true"></i> 05:00 PM - 08:00 PM
+                
+            </div>
+            </a>
+
+            </div>
+            </div>
+
+<br>
+<br>
+<br>
+
+        </div>
+        
+
+    </div>
+</div>
+
+
+
+<div *ngIf="is_doctor_select" class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header" style="background-color: #f1ae7b; color: #ffffff;">
+          <p class="modal-title" style="text-transform: uppercase;">Please fill the form </p>
+          <button type="button" style="color: #ffffff;" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="row" style="background-color: #f1ae7b; color: #fff; padding: 8px 0px;">
+                
+                <div class="col-md-6" style="text-align: center;">{{selectedDate}}</div>
+                <div class="col-md-6" style="text-align: center;">{{appointmentTime}}</div>
+
+            </div>
+            <br>
+         
+           
+            <label for="email">PET ID:</label>
+            <input type="text" class="form-control" [value]="petId" readonly>
+            <br>
+            <label for="email">DESCRIPTION:</label>
+            <textarea (change)="setDescription($event.target.value)" class="form-control" placeholder="ENTER DESCRIPTION" name="description"></textarea>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn" style="color: #fff; background-color: #f1ae7b; border-color: #f1ae7b;" (click)="sendRequest();" data-dismiss="modal">Send Request</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+
